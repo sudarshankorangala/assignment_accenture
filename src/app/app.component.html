@@ -1,1 +1,90 @@
 <router-outlet></router-outlet>
+1. Difference between ‘this’ and ‘let’ and when to use what, explain with examples.
+Answer : 
+The value of this is determined by how a function is called (runtime binding) where as let statement declares a block scope local variable, optionally initializing it to a value.
+   
+'this' keyword example            
+var test = {
+prop: 42,
+func: function() {
+return this.prop;
+},
+};
+console.log(test.func());
+// expected output: 42
+
+------------------------------------
+
+let keyword example
+let x = 1;
+if (x === 1) {
+ let x = 2;
+  console.log(x);
+ // expected output: 2
+ }
+ console.log(x);
+ // expected output: 1
+      
+
+    
+2.Write a function which accepts an array of strings and returns a map of character to count of the character(including spaces and special characters)
+ 
+let array = ["hello world","hello world"];
+let newarray =  array.join("");
+let splitnewarray =  newarray.split("");
+let counts =  {};
+for (var i = 0; i < splitnewarray.length; i++)
+{    
+counts[splitnewarray[i]] = (counts[splitnewarray[i]] + 1) || 1;
+}    
+console.log(counts);
+Output :{h: 2, e: 2, l: 6, o: 4, ' ': 2, w: 2, r: 2, d: 2 }
+-------------------------------------------
+
+3.Write a function to return all the keys present in an object at any level.
+var object = { a: 5, b: { c: { d: 10  }  } };            
+function iterate(obj) {    
+var keys = [];
+    for (var property in obj) {        
+        if (obj.hasOwnProperty(property)) {             
+            if (typeof obj[property] == "object"){                
+            keys.push(property);            
+            keys =  keys.concat(iterate(obj[property])); 
+         } else {                             
+            keys.push(property)            
+            }            
+            }       
+        }    
+   return keys;   
+   }   
+var result = iterate(object);
+console.log(result);
+Output :["a","b","c","d"];
+
+---------------------------
+
+4.Write a function to reverse every word of a string.
+Using split and reverse        
+let s = "foo";             
+let result = s.split("").reverse().join("");            
+console.log(result);            
+Output :  //oof
+
+Without using split and reverse and in O(1) space (since strings are immutable, assume that the input is a characterarray).
+function reverseString(str) {
+if (str === "")
+return "";
+else
+ return reverseString(str.substr(1)) + str.charAt(0);
+}
+reverseString("foo");  
+Output : //oof
+
+ -----------------------
+    
+5.Write a function to remove duplicate strings from an array of strings.
+const array = ["data1","data2","data3","data1","data2","data"];
+const uniqueSet = new Set(array);
+const uniqueSetdata = [...uniqueSet];
+console.log(uniqueSetdata); 
+Output : : [ 'data1', 'data2', 'data3', 'data' ]
