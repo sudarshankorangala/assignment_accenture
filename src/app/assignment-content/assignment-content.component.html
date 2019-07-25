@@ -1,0 +1,153 @@
+<app-header></app-header>
+<div class="assignment-page">
+    <h2 class="">1. Difference between ‘this’ and ‘let’ and when to use what, explain with examples.</h2>
+    <p>The value of
+        <strong>this</strong> is determined by how a function is called (runtime binding) where as
+        <strong>let</strong> statement declares a block scope local variable, optionally initializing it to a value.</p>
+    <div class="flex">
+        <div class="pr-50">
+            <p>
+                <strong>'this'</strong> keyword example</p>
+            <p>
+                var test = &#123;
+                <br/> prop: 42,
+                <br/> func: function() &#123;
+                <br/> return this.prop;
+                <br/> },
+                <br/> };
+                <br/> console.log(test.func());
+                <br/> // expected output: 42
+                <br/>
+
+            </p>
+        </div>
+        <div>
+            <p>
+                <strong>let </strong>keyword example</p>
+
+            <p>let x = 1;
+                <br/> if (x === 1) &#123;
+                <br/> let x = 2;
+                <br/> console.log(x);
+                <br/> // expected output: 2
+                <br/> }
+                <br/> console.log(x);
+                <br/> // expected output: 1</p>
+        </div>
+    </div>
+
+    <br/>
+    <h2 class="">2.Write a function which accepts an array of strings and returns a map of character to count of the character(including
+        spaces and special characters).</h2>
+ <p>    let array = ["hello world","hello world"];
+        <br/>
+let newarray =  array.join("");
+<br/>
+let splitnewarray =  newarray.split("");
+<br/>
+let counts =  &#123;&#125;;
+<br/>
+for (var i = 0; i < splitnewarray.length; i++)
+&#123;
+    <br/>
+    counts[splitnewarray[i]] = (counts[splitnewarray[i]] + 1) || 1;
+    <br/>
+    &#125;
+    <br/>
+console.log(counts);
+<br/>
+<strong>Output :</strong> &#123;h: 2, e: 2, l: 6, o: 4, ' ': 2, w: 2, r: 2, d: 2 &#125;
+</p> 
+     
+       
+        <h2 class="">3.Write a function to return all the keys present in an object at any level.</h2>
+
+      <p>   var object = &#123; a: 5, b: &#123; c: &#123; d: 10  &#125;  &#125; &#125;;
+            <br/>
+function iterate(obj) &#123;
+    <br/>
+var keys = [];
+<br/>
+    for (var property in obj) &#123;
+        <br/>
+        if (obj.hasOwnProperty(property)) &#123;
+            <br/> 
+            if (typeof obj[property] == "object")&#123;
+                <br/>
+            keys.push(property);
+            <br/>
+            keys =  keys.concat(iterate(obj[property]));   
+            <br/>          
+            &#125;
+            <br/>
+            else &#123;
+                <br/>             
+            keys.push(property)
+            <br/>
+            &#125;
+            <br/>
+            &#125;
+        <br/>
+        &#125;
+    <br/>
+   return keys;
+   <br/>
+   &#125;
+   <br/>
+var result = iterate(object);
+<br/>
+console.log(result);
+<br/>
+<strong>Output :</strong> ["a","b","c","d"];
+
+</p>
+    <h2 class="">4.Write a function to reverse every word of a string.</h2>
+    <ul>
+        <li> Using split and reverse</li>
+        <p> 
+             let s = "foo";
+             <br/>
+            let result = s.split("").reverse().join("");
+            <br/>
+            console.log(result);
+            <br/>
+            <strong>Output :</strong>   //oof
+
+          
+            </p>
+        <li> Without using split and reverse and in O(1) space (since strings are immutable, assume that the input is a character
+            array).</li>
+            <p>  function reverseString(str) &#123;
+                <br/>
+    if (str === "")
+    <br/>
+      return "";
+      <br/>
+    else
+    <br/>
+      return reverseString(str.substr(1)) + str.charAt(0);
+      <br/>
+      &#125;
+  <br/>
+  reverseString("foo");
+  <br/>
+  <strong>Output :</strong>   //oof
+</p>
+    </ul>
+     
+
+
+  
+
+  
+    
+    <h2 class="">5.Write a function to remove duplicate strings from an array of strings.</h2>
+  <p>const array = ["data1","data2","data3","data1","data2","data"];
+        <br/>
+  const uniqueSet = new Set(array);
+  <br/>
+  const uniqueSetdata = [...uniqueSet];
+  <br/>
+  console.log(uniqueSetdata); 
+  <br/>
+  <strong>Output :</strong>  : [ 'data1', 'data2', 'data3', 'data' ]</p>
